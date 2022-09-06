@@ -6,7 +6,28 @@ const outputDiv = document.querySelector("#output");
 checkBtn.addEventListener("click", checkPalindrome);
 
 function checkPalindrome(){
-    outputDiv.innerText =""; 
+    var bdaystr = input.value;
+
+    if(bdaystr !== ''){
+        var listOfDate = bdaystr.split('-');
+
+        var date = {
+            day : Number(listOfDate[2]),
+            month : Number(listOfDate[1]),
+            year : Number(listOfDate[0])
+        }
+
+        var isPalindrome = checkPalindromeForAllDateFormats(date);
+
+        if(isPalindrome){
+            outputDiv.innerText ="Yeah!!! Your birthday is palindrome";
+        }
+        else{
+            var [count, nextDate] = getNextPalindromeDate(date);
+            outputDiv.innerText =`The next palindrome date is ${nextDate.day}-${nextDate.month}-${nextDate.year}, you missed it by ${count}`;
+        }
+    }
+
 }
 
 function reverseStr(str){
@@ -138,5 +159,5 @@ function getNextPalindromeDate(date){
     return [count, nextDate];
 }
 
-var date={day: 31, month: 12, year: 2021};
-console.log(getNextPalindromeDate(date));
+// var date={day: 31, month: 12, year: 2021};
+// console.log(getNextPalindromeDate(date));
