@@ -20,7 +20,7 @@ function checkPalindrome(){
         var isPalindrome = checkPalindromeForAllDateFormats(date);
 
         if(isPalindrome){
-            outputDiv.innerText ="Yeah!!! Your birthday is palindrome";
+            outputDiv.innerText ="Yeah!!! Your birthday is palindrome 🤩🥳";
         }
         else{
             var [count, nextDate] = getNextPalindromeDate(date);
@@ -40,6 +40,7 @@ function reverseStr(str){
 }
 
 function isPalindrome(str){
+
     var rev = reverseStr(str);
     if(str === rev){
         return true;
@@ -136,7 +137,7 @@ function getNextDate(date){
         month = 1;
         year++;
     }
-
+    
     return {
         day: day,
         month: month,
@@ -148,16 +149,17 @@ function getNextPalindromeDate(date){
     var count = 0;
     var nextDate = getNextDate(date);
 
-    while(true){
+    while(1){
         count++;
-        var palindrome = checkPalindromeForAllDateFormats(date);
-        if(palindrome){
-            break;
-        }
+        var dateStr = convertDateToString(nextDate);
+        var palindromeCheck = checkPalindromeForAllDateFormats(dateStr);
+            if(palindromeCheck){
+                break;
+            }
         nextDate = getNextDate(nextDate);
     }
     return [count, nextDate];
 }
 
-// var date={day: 31, month: 12, year: 2021};
+// var date={day: 25, month: 1, year: 2020};
 // console.log(getNextPalindromeDate(date));
