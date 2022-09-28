@@ -27,6 +27,9 @@ function checkPalindrome(){
             outputDiv.innerText =`The next palindrome date is ${nextDate.day}-${nextDate.month}-${nextDate.year}, you missed it by ${count}`;
         }
     }
+    else{
+        outputDiv.innerText ="Please enter date!";
+    }
 
 }
 
