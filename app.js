@@ -148,6 +148,46 @@ function getNextDate(date){
     };
 }
 
+function getPreviousDate(date){
+    var day = date.day - 1;
+    var month = date.month;
+    var year = date.year;
+
+    var daysInMonth = [31, 28, 31, 30 ,31, 30, 31, 31, 30, 31, 30, 31];
+
+    if(month === 2){
+        if(isLeafYear(year)){
+            if(day < 1){
+                day = 29;
+                month--;
+            }
+        }
+        else{
+            if(day < 1){
+                day = 28;
+                month--;
+            }
+        }
+    }
+    else{
+        if(day < 1 ){
+            day = daysInMonth[month - 1];
+            month--;
+        }
+    }
+
+    if(month < 1){
+        month = 12;
+        year--;
+    }
+    
+    return {
+        day: day,
+        month: month,
+        year: year
+    };
+}
+
 function getNextPalindromeDate(date){
     var count = 0;
     var nextDate = getNextDate(date);
@@ -164,5 +204,5 @@ function getNextPalindromeDate(date){
     return [count, nextDate];
 }
 
-// var date={day: 25, month: 1, year: 2020};
-// console.log(getNextPalindromeDate(date));
+var date={day: 25, month: 1, year: 2020};
+console.log(getNextDate(date));
